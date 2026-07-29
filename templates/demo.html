@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Interior Designer</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0b2241, #0b2241);
+    }
+
+    .glass {
+      background: #0c2b54d5;
+      backdrop-filter: blur(20px);
+    }
+
+    .btn-glow:hover {
+      box-shadow: 0 0 20px rgba(9, 2, 62, 0.8);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center text-white">
+
+  <div class="glass p-10 rounded-3xl shadow-2xl w-full max-w-2xl text-center">
+
+    <!-- Title -->
+    <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+       Interior Designer
+    </h1>
+
+    <p class="text-gray-300 mb-8">
+      Describe your dream room and let AI design it ✨
+    </p>
+
+    <!-- Prompt Input -->
+    <input 
+      id="prompt"
+      type="text"
+      placeholder="e.g., Minimalist bedroom with warm lighting"
+      class="w-full p-4 rounded-xl bg-white/10 border border-gray-600 focus:outline-none focus:border-indigo-400 mb-6 text-white placeholder-gray-400"
+    />
+
+    <!-- Button -->
+    <button 
+      id="generate"
+      class="btn-glow w-full p-4 bg-indigo-600 rounded-xl font-semibold transition">
+      Generate Design
+    </button>
+
+    <!-- Loading -->
+    <div id="loading" class="hidden mt-4 text-indigo-400">
+      Generating your design...
+    </div>
+
+    <!-- Result -->
+    <div id="result" class="mt-8"></div>
+
+  </div>
+
+  <script>
+    const button = document.getElementById("generate");
+    const promptInput = document.getElementById("prompt");
+    const resultDiv = document.getElementById("result");
+    const loadingDiv = document.getElementById("loading");
+
+    // Allow ENTER key to trigger generation
+    promptInput.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        button.click();
+      }
+    });
+
+    button.addEventListener("click", async () => {
+      const prompt = promptInput.value.trim();
+
+      if (!prompt) {
+        alert("Enter a prompt first!");
+        return;
+      }
+
+      // UI changes while loading
+      loadingDiv.classList.remove("hidden");
+      resultDiv.innerHTML = "";
+      button.disabled = true;
+      button.innerText = "Generating...";
+
+      try {
+        const response = await fetch("/generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ prompt: prompt })
+        });
+
+        const data = await response.json();
+
+        if (data.image_url) {
+          const img = document.createElement("img");
+          img.src = data.image_url;
+          img.className = "rounded-2xl shadow-xl w-full border border-gray-700";
+          resultDiv.appendChild(img);
+        } else {
+          alert("Failed to generate image!");
+        }
+
+      } catch (err) {
+        console.error(err);
+        alert("Error generating image!");
+      } finally {
+        // Reset UI
+        loadingDiv.classList.add("hidden");
+        button.disabled = false;
+        button.innerText = "Generate Design";
+      }
+    });
+  </script>
+
+</body>
+</html>

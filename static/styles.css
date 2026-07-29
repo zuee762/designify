@@ -1,0 +1,129 @@
+/* Basic Reset and Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif; /* Used for body text */
+    color: #fff; /* Default text color for the dark header */
+    background-color: #0b2341; /* Dark blue background color for the header area */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px; /* Padding for the sides */
+}
+
+/* Header and Navigation */
+header {
+    background-color: #0b2241; /* Ensure header has the correct background */
+    padding-top: 30px; /* Space above the logo */
+}
+
+nav {
+    display: flex;
+    justify-content: flex-start; /* Align logo to the left */
+    margin-bottom: 80px; /* Space between the logo and the hero content */
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem; /* Larger font size for the logo */
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Hero Section Layout */
+.hero {
+    display: flex;
+    align-items: center; /* Vertically center content */
+    min-height: 500px; /* Ensure a good height for the section */
+    padding-bottom: 50px;
+}
+
+.hero-content, .hero-illustration {
+    flex: 1; /* Both sides take equal width */
+    padding-right: 20px;
+}
+
+/* Hero Text Content */
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem; /* Large, bold title */
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 20px;
+    max-width: 450px;
+}
+
+.hero-content p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 450px;
+    color: rgba(255, 255, 255, 0.85); /* Slightly lighter text for the description */
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    background-color: #6da2e8; /* Light blue color from the image */
+    color: #0b2241; /* Dark text for the button */
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #8bb7f0;
+}
+
+/* Illustration Placeholder (Right Side) */
+.hero-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.illustration-placeholder {
+    /* This simulates the space and visual weight of the complex illustration */
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(109, 162, 232, 0.1) 0%, rgba(109, 162, 232, 0) 70%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* HOW TO USE Section (The white footer separator) */
+.how-to-use-section {
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text for this section */
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid #eee; /* Optional subtle border */
+}
+
+.how-to-use-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.underline {
+    width: 60px;
+    height: 3px;
+    background-color: #6da2e8; /* Light blue underline */
+    margin: 8px auto 0; /* Center the underline */
+}
